@@ -9,7 +9,7 @@ const production = process.env.NODE_ENV === 'production';
 const app = express();
 app.use(cors());
 const server = http.Server(app);
-const io = socketio(server);
+const io = socketio(server, { origins: '*:*'});
 
 if (!production) {
   require('dotenv').config();
