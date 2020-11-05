@@ -2,10 +2,12 @@ const express  = require('express');
 const http     = require('http');
 const socketio = require('socket.io');
 const redis    = require('redis');
+const cors     = require('cors');
 
 const port = process.env.PORT || 8000;
 const production = process.env.NODE_ENV === 'production';
 const app = express();
+app.use(cors());
 const server = http.Server(app);
 const io = socketio(server);
 
