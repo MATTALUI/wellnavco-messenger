@@ -26,7 +26,7 @@ io.of(/^\/chat-\d*$/).on('connection', socket => {
   // const namespace = socket.nsp;
   // const namespaceName = namespace.name; // includes leading slash
   // rooms[namespaceName] = namespace;
-  // console.log(rooms)
+  // console.log(rooms);
   // TODO: add custom socket event handlers here.
   // socket.on('disconnect', function(){
   //   if(!Object.keys(namespace.connected).length) delete rooms[namespaceName];
