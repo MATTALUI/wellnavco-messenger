@@ -17,15 +17,12 @@ if (!production) {
 const rooms = {};
 
 const redisClient = redis.createClient({ url: process.env.REDIS_URL });
-console.log('ping================');
-console.log(redisClient.ping())
-console.log('ping================');
 redisClient.subscribe('wellnav:messages');
 redisClient.on('message', (channel, messageData) => {
   const message = JSON.parse(messageData);
-  console.log('message================');
-  console.log(message)
-  console.log('message================');
+  // console.log('message================');
+  // console.log(message)
+  // console.log('message================');
   const namespaceName = `chat-${message.chat_id}`;
   io.of(namespaceName).emit('new-message', message);
 });
@@ -34,12 +31,14 @@ io.of(/^\/chat-\d*$/).on('connection', socket => {
   const namespace = socket.nsp;
   const namespaceName = namespace.name; // includes leading slash
   rooms[namespaceName] = namespace;
-  console.log(rooms);
+  // console.log(rooms);
   // TODO: add custom socket event handlers here.
   socket.on('disconnect', function(){
-    if(!Object.keys(namespace.connected).length) delete rooms[namespaceName];
-    console.log(rooms)
-  })
+    if(!Object.keys(namespace.connected).length){
+      delete rooms[namespaceName];
+    }
+    // console.log(rooms)
+  });
 });
 
 if (!production) {
