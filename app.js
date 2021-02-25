@@ -12,7 +12,7 @@ const server = http.Server(app);
 const io = socketio(server, { origins: '*:*'});
 
 app.get('/', (req,res,next) => {
-  return res.send("wellnav-messenger\nFor API usage see README.\nTeam Dad®");
+  return res.send("wellnav-messenger<br/>For API usage see README.<br/>Team Dad®");
 });
 
 if (!production) {
